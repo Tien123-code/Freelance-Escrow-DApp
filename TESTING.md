@@ -22,7 +22,7 @@ npm run compile
 npm run test:coverage
 ```
 
-`npm test` compiles Solidity and runs `test/FreelanceEscrow.test.js` (77 tests). Hardhat provides fake funded addresses and controllable block timestamps. Every test restores a fresh blockchain snapshot so the order of tests does not affect results.
+`npm test` compiles Solidity and runs the contract and frontend/ABI tests. Hardhat provides fake funded addresses and controllable block timestamps. Every test restores a fresh blockchain snapshot so the order of tests does not affect results.
 
 ## Scenarios covered
 
@@ -43,7 +43,7 @@ npm run test:coverage
 
 These are automated EVM behavioral tests, **not** a formal verification or independent security audit. They do not exercise the browser UI or Sepolia infrastructure. The exact deadline semantics follow the contract's strict `>` timeout conditions.
 
-The frontend (including the VI / EN switch) is not covered by `npm test`; it was exercised separately with a headless DOM harness against the simulated chain.
+Frontend advance-action rendering and ABI signatures are covered by `npm test` using a simulated DOM. The full browser UI, including the VI / EN switch, is not covered by this suite.
 
 Advance approval regressions also cover unauthorized approval/rejection, duplicate requests, rejection and re-request, no credit before approval, no automatic approval, stale request clearing, revision rounds, full refunds without approved advances, and repeat approval prevention.
 
